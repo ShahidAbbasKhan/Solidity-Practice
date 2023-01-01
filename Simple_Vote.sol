@@ -14,7 +14,7 @@ contract Voting {
 	Vote[] public votes; 
 
 	function createVote(Choices choice) external {
-		require(!hasVoted(msg.sender));
+		require(!isVoteCreated(msg.sender));
 		votes.push(Vote(choice, msg.sender));
 	}
 
@@ -33,7 +33,7 @@ contract Voting {
 		return none;
 	}
 
-	function hasVoted(address voter) public view returns(bool) {
+	function isVoteCreated(address voter) public view returns(bool) {
 		return findVote(voter).voter == voter;
 	}
 
